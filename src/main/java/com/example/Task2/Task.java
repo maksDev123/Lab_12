@@ -10,13 +10,7 @@ public abstract class Task<T> {
 
     public abstract void apply(T arg);
 
-    public void freeze() {
-        id = UUID.randomUUID().toString();
-    }
-
-    public String getId() {
-        return id;
-    }
+    
 
     protected void setHeader(String header, String headerValue) {
         if (headers == null) {
@@ -25,7 +19,16 @@ public abstract class Task<T> {
         headers.put(header, headerValue);
     }
 
+
+    public void freeze() {
+        id = UUID.randomUUID().toString();
+    }
+    
     public String getHeader(String header) {
         return headers.get(header);
+    }
+
+    public String getId() {
+        return id;
     }
 }

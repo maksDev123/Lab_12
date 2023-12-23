@@ -8,8 +8,11 @@ import java.util.UUID;
 public class Group<T> extends Task<T> {
     public String groupUuid;
     private List<Task<T>> tasks;
+    List<String> ids;
 
     public Group<T> addTask(Task<T> task) {
+        task.freeze();
+        this.setHeader(groupUuid, task.getId());
         if (tasks == null) {
             tasks = new ArrayList<>();
         }
@@ -18,20 +21,21 @@ public class Group<T> extends Task<T> {
     }
 
     @Override
+    public void apply(T arg) {
+        this.freeze();
+        
+        tasks = Collections.unmodifiableList(tasks);
+        for (Task<T> task: tasks) {
+            task.apply(arg);
+        }
+    }
+
+    @Override
     public void freeze() {
         super.freeze();
         groupUuid = UUID.randomUUID().toString();
         for (Task<T> task: tasks) {
             task.freeze();
-        }
-    }
-
-    @Override
-    public void apply(T arg) {
-        this.freeze();
-        tasks = Collections.unmodifiableList(tasks);
-        for (Task<T> task: tasks) {
-            task.apply(arg);
         }
     }
 }

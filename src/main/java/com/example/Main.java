@@ -1,7 +1,9 @@
-package demo.src.main.java.com.example;
+package com.example;
+
+import com.example.Task1.ATM;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        ATM.process(123);
     }
 }

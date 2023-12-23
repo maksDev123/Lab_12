@@ -1,7 +1,6 @@
 package com.example.Task2;
 
 
-import java.util.UUID;
 import java.util.function.Consumer;
 
 public class Signature<T> extends Task<T> {

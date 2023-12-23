@@ -1,6 +1,4 @@
-package com.example;
-
-import com.example.Task1.ATM;
+package com.example.Task1;
 
 public class Main {
     public static void main(String[] args) {
